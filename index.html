@@ -103,28 +103,38 @@
             padding-bottom: 10px;
         }
         
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 370px;
-            margin-top: 20px;
-        }
+  .photo-flex {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .photo-flex img {
+    height: 300px; /* Фиксированная высота (или auto) */
+    object-fit: contain;
+  }
+
+  .horizontal-img {
+    width: 60%; /* Горизонтальное шире */
+  }
+
+  .vertical-img {
+    width: 40%; /* Вертикальное уже */
+  }
+
+  @media (max-width: 600px) {
+    .photo-flex {
+      flex-direction: column;
+    }
+    .photo-flex img {
+      width: 100% !important;
+      height: auto;
+    }
+  }
         
-        .photo-grid img {
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-		
-			height: 500px;   /* Высота подстраивается пропорционально */
-            width: auto;
-        }
-        
-        .photo-grid img:hover {
-            transform: scale(1.03);
-        }
-        
-        a {
+         {
             color: #4dabf7;
             text-decoration: none;
             transition: color 0.3s;
@@ -242,11 +252,10 @@
             <p>Так же я умею готовить, программировать <s>я это ненавижу</s>, люблю смотреть на старое железо и насиловать свой организм кофеином, никотином и сном в 4-6ч. Мне нравится серия игр Battlefield, Forza Horizon и так же мне не даётся трудом Factorio.  <p>
 			<p>Арты моей текущей фурсоны, так же вы меня можете знать как <a href="#">C.A.S.S.I.E._Midnight</a>, <a href="#">D.E.F.A.U.L.T._GFD43i</a> и <a href="#">Aksolor</a>.</p>
             
-            <div class="photo-grid">
-                <img src="images/fur.png" alt="fursona">
-             
-                <img src="images/3D.jpg" alt="3D">
-            </div>
+            <div class="photo-flex">
+				<img class="horizontal-img" src="images/fursona.jpg" alt="Горизонтальное фото">
+				<img class="vertical-img" src="images/3D.jpg" alt="Вертикальное фото">
+			</div>
         </div>
         
         <div class="info-block" data-lang-content="ua">
@@ -281,24 +290,24 @@
 			
             
             <div class="social-links">
-                <a href="https://discord.gg/ваша_ссылка" class="social-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://discordapp.com/users/483626244819124224/" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
                     Дискордик
                 </a>
-                <a href="https://t.me/ваш_ник" class="social-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/CASSIE_MIDNIGHT" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="social-icon">
                     Личка
                 </a>
-                <a href="https://t.me/ваша_группа" class="social-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/AllCircuits" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram Group" class="social-icon">
                     Группы
                 </a>
-                <a href="https://steamcommunity.com/id/ваш_профиль" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <img src="image/steam.png" alt="b" class="social-icon">
+                <a href="https://steamcommunity.com/id/FireReloaD/" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <img src="images/steam.png" alt="b" class="social-icon">
                     Steam
                 </a>
 				<a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <img src="image/yt.png" alt="" class="social-icon">
+                    <img src="images/yt.png" alt="" class="social-icon">
                     Ютуб ;3
                 </a>
             </div>
