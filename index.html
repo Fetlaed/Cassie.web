@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en"> <!-- Временный язык, изменится при загрузке -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фотограф | Ваше Имя</title>
+    <title>UwU | OwO</title>
     <style>
         :root {
             --dark-cell: rgba(0, 0, 0, 0.7);
@@ -11,16 +11,17 @@
             --text-color: #fff;
             --bg-color: rgba(0, 0, 0, 0.7);
         }
-
+        
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             height: 100vh;
+			font-size: 20px;
             font-family: 'Helvetica Neue', Arial, sans-serif;
             color: var(--text-color);
         }
-
+        
         /* Шахматный фон */
         .chess-world {
             position: fixed;
@@ -32,7 +33,7 @@
             animation: moveChess 30s linear infinite;
             z-index: -1;
         }
-
+        
         .chess-grid {
             display: grid;
             grid-template-columns: repeat(40, 5vmax);
@@ -40,42 +41,42 @@
             width: 100%;
             height: 100%;
         }
-
+        
         .chess-cell {
             width: 100%;
             height: 100%;
         }
-
+        
         .chess-cell.dark { background-color: var(--dark-cell); }
         .chess-cell.light { background-color: var(--light-cell); }
-
+        
         .gradient-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg,
-                #ff0000, #ff7700, #ffdd00,
-                #00ff00, #0088ff, #0000ff,
+            background: linear-gradient(135deg, 
+                #ff0000, #ff7700, #ffdd00, 
+                #00ff00, #0088ff, #0000ff, 
                 #7700ff, #ff00ff, #ff0000);
             background-size: 400% 400%;
             animation: gradientFlow 15s ease infinite;
             mix-blend-mode: multiply;
             z-index: -1;
         }
-
+        
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+        
         @keyframes moveChess {
             0% { transform: translate(-50%, -50%) rotate(45deg) translateX(0); }
             100% { transform: translate(-50%, -50%) rotate(45deg) translateX(-10vmax); }
         }
-
+        
         /* Контент */
         .container {
             max-width: 1200px;
@@ -85,53 +86,55 @@
             flex-direction: column;
             gap: 40px;
         }
-
+        
         .info-block {
             background: var(--bg-color);
             border-radius: 15px;
             padding: 30px;
             backdrop-filter: blur(5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: none; /* По умолчанию скрыты */
         }
-
+        
         .info-block h2 {
             margin-top: 0;
             font-size: 2rem;
             border-bottom: 2px solid var(--text-color);
             padding-bottom: 10px;
         }
-
+        
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 370px;
             margin-top: 20px;
         }
-
+        
         .photo-grid img {
             width: 100%;
-            height: auto;
+            height: 100%;
             border-radius: 8px;
             transition: transform 0.3s;
-            object-fit: cover;
-            aspect-ratio: 4/3;
+		
+			height: 500px;   /* Высота подстраивается пропорционально */
+            width: auto;
         }
-
+        
         .photo-grid img:hover {
             transform: scale(1.03);
         }
-
+        
         a {
             color: #4dabf7;
             text-decoration: none;
             transition: color 0.3s;
         }
-
+        
         a:hover {
             color: #228be6;
             text-decoration: underline;
         }
-
+        
         /* Социальные сети */
         .social-links {
             display: flex;
@@ -139,7 +142,7 @@
             gap: 15px;
             margin-top: 20px;
         }
-
+        
         .social-link {
             display: flex;
             align-items: center;
@@ -149,17 +152,17 @@
             border-radius: 20px;
             transition: all 0.3s;
         }
-
+        
         .social-link:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-
+        
         .social-icon {
             width: 20px;
             height: 20px;
         }
-
+        
         /* Языковая панель */
         .language-switcher {
             position: fixed;
@@ -169,7 +172,7 @@
             gap: 10px;
             z-index: 100;
         }
-
+        
         .lang-btn {
             background: var(--bg-color);
             color: var(--text-color);
@@ -179,36 +182,36 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
+        
         .lang-btn:hover, .lang-btn.active {
             background: var(--text-color);
             color: #000;
         }
-
+        
         /* Адаптивность */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
                 gap: 20px;
             }
-
+            
             .info-block {
                 padding: 20px;
             }
-
+            
             .photo-grid {
                 grid-template-columns: 1fr;
             }
-
+            
             .social-links {
                 gap: 10px;
             }
-
+            
             .social-link {
                 padding: 6px 12px;
                 font-size: 0.9rem;
             }
-
+            
             .language-switcher {
                 top: 10px;
                 right: 10px;
@@ -222,94 +225,93 @@
     <div class="chess-world">
         <div class="chess-grid" id="chessGrid"></div>
     </div>
-
+    
     <!-- Языковая панель -->
     <div class="language-switcher">
-        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
         <button class="lang-btn" data-lang="ua">UA</button>
         <button class="lang-btn" data-lang="en">ENG</button>
     </div>
-
+    
     <!-- Основной контент -->
     <div class="container">
         <!-- Блок 1: О себе -->
         <div class="info-block" data-lang-content="ru">
-            <h2>Обо мне</h2>
-            <p>Привет! Меня зовут [Ваше Имя], я профессиональный фотограф с 5-летним опытом работы. Специализируюсь на портретной, свадебной и предметной фотографии.</p>
-            <p>Мои работы публиковались в таких изданиях как <a href="#">National Geographic</a> и <a href="#">Vogue</a>.</p>
-
+            <h2>FAQ</h2>
+            <p>Привет! Меня зовут Кейси [Cassie], я фурри с 2016го года. Мне 21 год, день рождения 22 мая. Специализируюсь на компютерах и серверах. Работаю в компании по сборке компютеров уже второй год на должности Главы офиса по сборке компютеров. Я не редко сижу в шлеме виртуальной реальности (VR) играясь когда есть силы после работы) </p>
+            <p>Так же я умею готовить, программировать <s>я это ненавижу</s>, люблю смотреть на старое железо и насиловать свой организм кофеином, никотином и сном в 4-6ч. Мне нравится серия игр Battlefield, Forza Horizon и так же мне не даётся трудом Factorio.  <p>
+			<p>Арты моей текущей фурсоны, так же вы меня можете знать как <a href="#">C.A.S.S.I.E._Midnight</a>, <a href="#">D.E.F.A.U.L.T._GFD43i</a> и <a href="#">Aksolor</a>.</p>
+            
             <div class="photo-grid">
-                <img src="https://via.placeholder.com/300x200" alt="Пример работы 1">
-                <img src="https://via.placeholder.com/300x200" alt="Пример работы 2">
-                <img src="https://via.placeholder.com/300x200" alt="Пример работы 3">
+                <img src="image/fur.png" alt="fursona">
+             
+                <img src="image/3D.jpg" alt="3D">
             </div>
         </div>
-
-        <div class="info-block" data-lang-content="ua" style="display:none">
+        
+        <div class="info-block" data-lang-content="ua">
             <h2>Про мене</h2>
             <p>Привіт! Мене звати [Ваше Ім'я], я професійний фотограф з 5-річним досвідом роботи. Спеціалізуюся на портретній, весільній та предметній фотографії.</p>
             <p>Мої роботи публікувалися у таких виданнях як <a href="#">National Geographic</a> та <a href="#">Vogue</a>.</p>
-
+            
             <div class="photo-grid">
                 <img src="https://via.placeholder.com/300x200" alt="Приклад роботи 1">
                 <img src="https://via.placeholder.com/300x200" alt="Приклад роботи 2">
                 <img src="https://via.placeholder.com/300x200" alt="Приклад роботи 3">
             </div>
         </div>
-
-        <div class="info-block" data-lang-content="en" style="display:none">
+        
+        <div class="info-block" data-lang-content="en">
             <h2>About Me</h2>
             <p>Hi! My name is [Your Name], I'm a professional photographer with 5 years of experience. I specialize in portrait, wedding and product photography.</p>
             <p>My works have been published in <a href="#">National Geographic</a> and <a href="#">Vogue</a>.</p>
-
+            
             <div class="photo-grid">
                 <img src="https://via.placeholder.com/300x200" alt="Work example 1">
                 <img src="https://via.placeholder.com/300x200" alt="Work example 2">
                 <img src="https://via.placeholder.com/300x200" alt="Work example 3">
             </div>
         </div>
-
+        
         <!-- Блок 2: Контакты -->
         <div class="info-block" data-lang-content="ru">
-            <h2>Контакты</h2>
-            <p>Свяжитесь со мной для сотрудничества:</p>
-            <ul>
-                <li>Email: <a href="mailto:example@email.com">example@email.com</a></li>
-                <li>Телефон: <a href="tel:+380991234567">+380 99 123 45 67</a></li>
-            </ul>
-
+            <h2>Нижняя_строка х)</h2>
+			<p>Наверняка вы смогли отсканировать QR код с протогена или перешли сюда по прямой ссылке, по этому раз вы здесь, ознакамливайтесь с группами что я веду ^^</p>
+			<p>Сайт не собирает никаких данных, это просто страничка где мне так же удобнее разместить свою личную информацию,ссылки и прочее</p>
+			
+            
             <div class="social-links">
                 <a href="https://discord.gg/ваша_ссылка" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
-                    Discord
+                    Дискордик
                 </a>
                 <a href="https://t.me/ваш_ник" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="social-icon">
-                    Telegram
+                    Личка
                 </a>
                 <a href="https://t.me/ваша_группа" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram Group" class="social-icon">
-                    Telegram Group
+                    Группы
                 </a>
                 <a href="https://steamcommunity.com/id/ваш_профиль" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3670/3670158.png" alt="Steam" class="social-icon">
+                    <img src="image/steam.png" alt="b" class="social-icon">
                     Steam
                 </a>
-                <a href="https://instagram.com/ваш_профиль" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
-                    Instagram
+				<a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <img src="image/yt.png" alt="" class="social-icon">
+                    Ютуб ;3
                 </a>
             </div>
         </div>
-
-        <div class="info-block" data-lang-content="ua" style="display:none">
+        
+        <div class="info-block" data-lang-content="ua">
             <h2>Контакти</h2>
             <p>Зв'яжіться зі мною для співпраці:</p>
             <ul>
                 <li>Email: <a href="mailto:example@email.com">example@email.com</a></li>
                 <li>Телефон: <a href="tel:+380991234567">+380 99 123 45 67</a></li>
             </ul>
-
+            
             <div class="social-links">
                 <a href="https://discord.gg/ваша_ссылка" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
@@ -333,15 +335,15 @@
                 </a>
             </div>
         </div>
-
-        <div class="info-block" data-lang-content="en" style="display:none">
+        
+        <div class="info-block" data-lang-content="en">
             <h2>Contacts</h2>
             <p>Contact me for collaboration:</p>
             <ul>
                 <li>Email: <a href="mailto:example@email.com">example@email.com</a></li>
                 <li>Phone: <a href="tel:+380991234567">+380 99 123 45 67</a></li>
             </ul>
-
+            
             <div class="social-links">
                 <a href="https://discord.gg/ваша_ссылка" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
@@ -371,7 +373,6 @@
         // Генерация шахматной доски
         const grid = document.getElementById('chessGrid');
         const size = 40;
-
         for (let y = 0; y < size; y++) {
             for (let x = 0; x < size; x++) {
                 const cell = document.createElement('div');
@@ -380,27 +381,66 @@
             }
         }
 
-        // Переключение языков
-        const langBtns = document.querySelectorAll('.lang-btn');
+        // Функция установки языка
+        function setLanguage(lang) {
+            // Скрываем все блоки контента
+            document.querySelectorAll('[data-lang-content]').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Определяем какой язык показывать
+            const langToShow = ['ru', 'ua', 'en'].includes(lang) ? lang : 'en';
+            
+            // Показываем только блоки для выбранного языка
+            document.querySelectorAll(`[data-lang-content="${langToShow}"]`).forEach(el => {
+                el.style.display = 'block';
+            });
+            
+            // Обновляем активную кнопку
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === langToShow) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Устанавливаем атрибут lang для HTML
+            document.documentElement.lang = langToShow;
+        }
 
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Удаляем активный класс у всех кнопок
-                langBtns.forEach(b => b.classList.remove('active'));
-                // Добавляем активный класс текущей кнопке
-                btn.classList.add('active');
+        // Функция определения языка системы
+        function detectSystemLanguage() {
+            const systemLang = (navigator.language || navigator.userLanguage).toLowerCase();
+            
+            // Соответствие языков системы и кодов на сайте
+            const languageMap = {
+                'ru': 'ru', // Русский
+                'uk': 'ua', // Украинский
+                'en': 'en'  // Английский
+            };
+            
+            // Проверяем полный код языка (например, 'ru-RU')
+            if (languageMap[systemLang]) {
+                return languageMap[systemLang];
+            }
+            
+            // Проверяем только основной код (например, 'ru')
+            const primaryLang = systemLang.split('-')[0];
+            return languageMap[primaryLang] || 'en'; // По умолчанию английский
+        }
 
-                // Получаем выбранный язык
-                const lang = btn.dataset.lang;
-
-                // Скрываем все блоки контента
-                document.querySelectorAll('[data-lang-content]').forEach(el => {
-                    el.style.display = 'none';
-                });
-
-                // Показываем только блоки для выбранного языка
-                document.querySelectorAll(`[data-lang-content="${lang}"]`).forEach(el => {
-                    el.style.display = 'block';
+        // При загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Определяем язык системы
+            const detectedLang = detectSystemLanguage();
+            
+            // Устанавливаем язык
+            setLanguage(detectedLang);
+            
+            // Обработчики для кнопок переключения языка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.dataset.lang);
                 });
             });
         });
