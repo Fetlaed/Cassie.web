@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>UwU | OwO</title>
-	
-	<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-   
-   <style>
+    <title>UwU | OwO</title>
+    <style>
         :root {
             --dark-cell: rgba(0, 0, 0, 0.7);
             --light-cell: rgba(255, 255, 255, 0.3);
@@ -232,21 +228,6 @@
             }
         }
     </style>
-	 <style>
-        /* Стили для счётчика (можно изменить) */
-        #counter {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #6e48aa, #9d50bb);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            font-family: Arial;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-    </style>
 </head>
 <body>
     <!-- Шахматный фон -->
@@ -270,7 +251,7 @@
             <p>Привет! Меня зовут Кейси [Cassie], я фурри с 2016го года. Мне 21 год, день рождения 22 мая. Специализируюсь на компютерах и серверах. Работаю в компании по сборке компютеров уже второй год на должности Главы офиса по сборке компютеров. Я не редко сижу в шлеме виртуальной реальности (VR) играясь когда есть силы после работы) </p>
             <p>Так же я умею готовить, программировать <del>я это ненавижу</del>, люблю смотреть на старое железо и насиловать свой организм кофеином, никотином и сном в 4-6ч. Мне нравится серия игр Battlefield, Forza Horizon и так же мне легко с Factorio.  <p>
 			<p>Арты моей текущей фурсоны, так же вы меня можете знать как <a href="#">C.A.S.S.I.E._Midnight</a>, <a href="#">D.E.F.A.U.L.T._GFD43i</a> и <a href="#">Aksolor</a>.</p>
-    </div>
+            
             <div class="photo-flex">
 				<img class="horizontal-img" src="images/fursona.jpg" alt="Горизонтальное фото">
 				<img class="vertical-img" src="images/3D.jpg" alt="Вертикальное фото">
@@ -305,8 +286,8 @@
             <h2>Нижняя_строка х)</h2>
 			<p>Наверняка вы смогли отсканировать QR код с протогена или перешли сюда по прямой ссылке, по этому раз вы здесь, ознакамливайтесь с группами что я веду ^^</p>
 			<p>Сайт не собирает никаких данных, это просто страничка где мне так же удобнее разместить свою личную информацию,ссылки и прочее. Информацию буду добавлять по мере прихода идей что могу сюда дописть :Р</p>
-			<p>Количество заходов сегодня: <span id="today">0</span></p>
-            <p>И за всё время: <span id="total">0</span></p>
+			
+            
             <div class="social-links">
                 <a href="https://discordapp.com/users/483626244819124224/" class="social-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" class="social-icon">
@@ -466,61 +447,6 @@
                     setLanguage(btn.dataset.lang);
                 });
             });
-        });
-    </script>
-	    <script>
-        // Инициализация Firebase (ЗАМЕНИТЕ НА СВОИ ДАННЫЕ!)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCgo-JC1NUrKdjvVHEEFBYhPR8FxSxIJ6c",
-            authDomain: "web-count-80a06.firebaseapp.com",
-            projectId: "web-count-80a06",
-            storageBucket: "web-count-80a06.firebasestorage.app",
-            messagingSenderId: "184045022668",
-            appId: "1:184045022668:web:47a44c4839581384a84169"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // Функции для работы счётчика
-        async function countVisit() {
-            const today = new Date().toISOString().split('T')[0];
-            try {
-                const ip = await fetch('https://api.ipify.org?format=json')
-                    .then(res => res.json())
-                    .then(data => data.ip);
-                
-                await db.collection("visits").add({
-                    date: today,
-                    ip: ip,
-                    timestamp: new Date()
-                });
-            } catch (e) {
-                console.log("Ошибка записи:", e);
-            }
-        }
-
-        async function updateCounter() {
-            const today = new Date().toISOString().split('T')[0];
-            
-            try {
-                // Всего посещений
-                const totalSnapshot = await db.collection("visits").count().get();
-                document.getElementById("total").textContent = totalSnapshot.data().count;
-
-                // Посещений сегодня
-                const todaySnapshot = await db.collection("visits")
-                    .where("date", "==", today)
-                    .count()
-                    .get();
-                document.getElementById("today").textContent = todaySnapshot.data().count;
-            } catch (e) {
-                console.log("Ошибка загрузки:", e);
-            }
-        }
-
-        // Запускаем при загрузке страницы
-        window.addEventListener('DOMContentLoaded', () => {
-            countVisit().then(() => updateCounter());
         });
     </script>
 </body>
