@@ -1,11 +1,11 @@
 // Инициализация Firebase (данные из консоли)
 const firebaseConfig = {
-  apiKey: "ваш_apiKey",
-  authDomain: "ваш-проект.firebaseapp.com",
-  projectId: "ваш-projectId",
-  storageBucket: "ваш-bucket.appspot.com",
-  messagingSenderId: "ваш-senderId",
-  appId: "ваш-appId"
+	apiKey: "AIzaSyCgo-JC1NUrKdjvVHEEFBYhPR8FxSxIJ6c",
+    authDomain: "web-count-80a06.firebaseapp.com",
+    projectId: "web-count-80a06",
+    storageBucket: "web-count-80a06.firebasestorage.app",
+    messagingSenderId: "184045022668",
+    appId: "1:184045022668:web:47a44c4839581384a84169"
 };
 
 // Инициализация
